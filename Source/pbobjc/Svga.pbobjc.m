@@ -602,9 +602,11 @@ GPBEnumDescriptor *SVGAProtoShapeEntity_ShapeType_EnumDescriptor(void) {
                                            values:values
                                             count:(uint32_t)(sizeof(values) / sizeof(int32_t))
                                      enumVerifier:SVGAProtoShapeEntity_ShapeType_IsValidValue];
-        if (!OSAtomicCompareAndSwapPtrBarrier(nil, worker, (void * volatile *)&descriptor)) {
-            [worker release];
-        }
+        dispatch_barrier_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            if (descriptor != worker) {
+                [worker release];
+            }
+        });
     }
     return descriptor;
 }
@@ -1021,9 +1023,11 @@ GPBEnumDescriptor *SVGAProtoShapeEntity_ShapeStyle_LineCap_EnumDescriptor(void) 
                                             count:(uint32_t)(sizeof(values) / sizeof(int32_t))
                                      enumVerifier:SVGAProtoShapeEntity_ShapeStyle_LineCap_IsValidValue
                               extraTextFormatInfo:extraTextFormatInfo];
-        if (!OSAtomicCompareAndSwapPtrBarrier(nil, worker, (void * volatile *)&descriptor)) {
-            [worker release];
-        }
+        dispatch_barrier_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            if (descriptor != worker) {
+                [worker release];
+            }
+        });
     }
     return descriptor;
 }
@@ -1060,9 +1064,11 @@ GPBEnumDescriptor *SVGAProtoShapeEntity_ShapeStyle_LineJoin_EnumDescriptor(void)
                                             count:(uint32_t)(sizeof(values) / sizeof(int32_t))
                                      enumVerifier:SVGAProtoShapeEntity_ShapeStyle_LineJoin_IsValidValue
                               extraTextFormatInfo:extraTextFormatInfo];
-        if (!OSAtomicCompareAndSwapPtrBarrier(nil, worker, (void * volatile *)&descriptor)) {
-            [worker release];
-        }
+        dispatch_barrier_sync(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            if (descriptor != worker) {
+                [worker release];
+            }
+        });
     }
     return descriptor;
 }
